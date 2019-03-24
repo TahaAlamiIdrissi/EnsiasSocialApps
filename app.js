@@ -7,6 +7,7 @@ const app = express();
 
 const childrenRoutes = require('./api/routes/childrens');
 const parentRoutes = require('./api/routes/parents');
+const applicationRoutes = require('./api/routes/applications');
 
 app.use(bodyparser.json());
 
@@ -22,7 +23,8 @@ app.use((req,res,next) => {
 });
 
 app.use('/childrens',childrenRoutes);
-app.use('/parents',parentRoutes);
+/* app.use('/parents',parentRoutes);
+ */app.use('/applications',applicationRoutes);
 
 app.use((req,res,next) =>{
     const error = new Error('Not Found .');

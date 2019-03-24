@@ -6,9 +6,9 @@ const mysqlConnect = require('../../db');
 /* 
 *   Get All Parents 
 */
-
+/* 
 router.get('/',(req,res,next) => {
     mysqlConnect.query('SELECT * FROM ')
-})
+}) */
 
 module.exports = router;
