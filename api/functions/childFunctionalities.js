@@ -33,7 +33,30 @@ function getChildById(id){
     });
 }
 
+function getParentChilds(id){
+    return new Promise((resolve,reject) => {
+        const query_str = `SELECT * 
+                           FROM children 
+                           WHERE id IN ( SELECT id 
+                                         FROM enrollments 
+                                         WHERE user_id 
+                                         in (SELECT id 
+                                             FROM users 
+                                             WHERE type='organisme' 
+                                             AND id = ? ) )`;
+        const query_param = [id];
+
+        mysqlConnect.query(query_str,query_param,(err,rows,fields) => {
+            if(err)
+                return reject(err);
+            
+            resolve(rows);
+        });
+    });
+}
+
 module.exports = {
     getAllChilds ,
-    getChildById
+    getChildById,
+    getParentChilds
 };
