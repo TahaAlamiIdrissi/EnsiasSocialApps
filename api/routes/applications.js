@@ -1,24 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const mysqlConnect = require('../../db');
+const appFunc = require('../functions/appFunctionalities');
 
 
 /* 
 **GETTING ALL CHILDS /applications
 */
 router.get('/',(req,res,next) => {
-    mysqlConnect.query('SELECT * FROM apps',(err,rows,fields) => {
-        if(!err){
-            res.status(200)
-            .json({
-             message : 'GET/ All APPLICATIONS ',
-             applications : rows,
-         })
-        }else{
-            console.log(err);
-        }
-    });
-
+    appFunc.getAllapps()
+           .then(docs => {
+                const response = {
+                    count: docs.length,
+                    applications: docs.map(doc => {
+                        return {
+                            doc,
+                            request: {
+                                type: 'GET',
+                                url: `http://localhost:3000/applications/${doc.id}`
+                            }
+                        }
+                    })
+                }
+                res.status(200)
+                   .json(response);
+           })
+           .catch(err => {
+               console.log(err);
+               res.status(500)
+                  .json(err);
+           });
 });
 
 /* 
@@ -26,19 +36,25 @@ router.get('/',(req,res,next) => {
  */
 
  router.get('/:appId',(req,res,next) => {
-     mysqlConnect.query('SELECT * FROM apps WHERE id = ?',[req.params.appId],
-        (err,rows,fields) => {
-            if(!err){
+     const id = req.params.appId;
+     appFunc.getAppById(id)
+            .then(doc => {
+                const response = {
+                    count : doc.length,
+                    application : doc,
+                    request: {
+                        type: 'GET',
+                        url: `http://localhost:3000/applications`
+                    }
+                }
                 res.status(200)
-                   .json({
-                    message : 'GET/ A SINGLE APP BY ID ',
-                    application : rows,
-                    allApps : `http://localhost:3000/applications`
-                })
-            }else{
+                   .json(response);
+            })
+            .catch(err => {
                 console.log(err);
-            }
-        });
+                res.status(500)
+                   .json(err);  
+            });
  });
 
 module.exports = router;

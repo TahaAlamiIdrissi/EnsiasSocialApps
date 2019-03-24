@@ -27,8 +27,7 @@ function getAppById(id){
     });
 }
 
-
-
 module.exports = {
-    getAllapps
+    getAllapps,
+    getAppById
 }
