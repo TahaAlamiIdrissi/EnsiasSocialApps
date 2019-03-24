@@ -10,9 +10,9 @@ function getAllChilds(){
         mysqlConnect.query(query_str,(err, rows, fields) => {
             // Call reject on error states,
             // call resolve with results
-            if (err) {
+            if (err) 
                 return reject(err);
-            }
+            
             resolve(rows);
         });
     });

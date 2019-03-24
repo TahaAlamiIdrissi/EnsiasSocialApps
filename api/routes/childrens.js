@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mysqlConnect = require('../../db');
 const childfunc = require('../functions/childFunctionalities');
 
 /* 
