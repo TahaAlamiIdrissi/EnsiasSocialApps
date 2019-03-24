@@ -79,5 +79,6 @@ function getTutorChilds(id){
 module.exports = {
     getAllChilds ,
     getChildById,
-    getParentChilds
+    getParentChilds,
+    getTutorChilds
 };
