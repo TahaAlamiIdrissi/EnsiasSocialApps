@@ -1,12 +1,9 @@
 const express = require('express');
 const bodyparser = require('body-parser');
-const mysql = require('mysql');
-const database = require('./db');
 const app = express();
 
 
 const childrenRoutes = require('./api/routes/childrens');
-const parentRoutes = require('./api/routes/parents');
 const applicationRoutes = require('./api/routes/applications');
 
 app.use(bodyparser.json());
@@ -23,20 +20,21 @@ app.use((req,res,next) => {
 });
 
 app.use('/childrens',childrenRoutes);
-/* app.use('/parents',parentRoutes);
- */app.use('/applications',applicationRoutes);
+app.use('/applications',applicationRoutes);
 
 app.use((req,res,next) =>{
-    const error = new Error('Not Found .');
-    error.status = 404;
-    next(error);
-});
-
-app.use((error,req,res) => {
+    const error = {
+        message: 'Not Found !',
+        status: 404
+    }
     res.status(error.status || 500)
        .json({
-           error: error.message
+           error: error.message,
+           status: error.status
        });
 });
+/* app.use((error,req,res,next) => {
+
+}); */
 
 module.exports = app;
