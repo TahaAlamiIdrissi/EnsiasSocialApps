@@ -4,6 +4,9 @@ const childfunc = require('../functions/childFunctionalities');
 
 /* 
 **GETTING ALL CHILDS /childrens
+
+we use the functions that we've defined in /functions/..
+to work on the rows 
 */
 router.get('/',(req,res,next) => {
    childfunc.getAllChilds()

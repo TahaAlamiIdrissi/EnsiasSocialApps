@@ -32,7 +32,7 @@ router.get('/',(req,res,next) => {
 });
 
 /* 
-**GET APPLICATION BY ID
+**GET APPLICATION BY ID /applications/:appId
  */
 
  router.get('/:appId',(req,res,next) => {
@@ -57,4 +57,14 @@ router.get('/',(req,res,next) => {
             });
  });
 
+ /* 
+ ** GET APPlICATIONS OF A SPECIFIC TUTOR 
+ */
+
+
+ /* 
+ ** GET APPLICATIONS OF A SPECIFIC PARENT 
+ */
+
+ 
 module.exports = router;

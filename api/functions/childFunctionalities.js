@@ -1,6 +1,13 @@
 const mysqlConnect = require('../../db');
 
 
+
+
+/* 
+* This function will return a promise with all the rows if the resolver method has been
+* executed or the error if the reject method ..
+*/
+
 function getAllChilds(){
     return new Promise((resolve, reject) => {
         // The Promise constructor should catch any errors thrown on
