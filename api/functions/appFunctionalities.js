@@ -27,6 +27,16 @@ function getAppById(id){
     });
 }
 
+/* now we have to get the most rated apps and the most viewed 
+ so we have to add two fields 
+    -> one is called rate 
+    -> another one called viewed
+ */
+
+ /* 
+    SELECT * FROM apps WHERE rate >= (SELECT MAX(rate) FROM apps) ORDER BY
+ */
+
 module.exports = {
     getAllapps,
     getAppById
