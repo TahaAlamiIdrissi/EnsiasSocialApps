@@ -35,9 +35,20 @@ function getAppById(id){
 /* now we have to get the most rated apps and the most viewed 
  so we have to add two fields 
      -> one is called rate 
-    SELECT * FROM apps WHERE rate >= (SELECT MAX(rate) FROM apps) ORDER BY
      -> another one called viewed
 */
+//applications/higlyRated
+function getAppByRate(){
+    return new Promise((resolve,reject) => {
+        //    SELECT * FROM apps WHERE rate >= (SELECT MAX(rate) FROM apps) ORDER BY
+    });
+}
+//  applications/mostViewed ...
+function getAppByViews(){
+    return new Promise((resolve,reject) => {
+        //    SELECT * FROM apps WHERE view ...
+    });
+}
 
 module.exports = {
     getAllapps,
