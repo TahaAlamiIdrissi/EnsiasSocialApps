@@ -59,5 +59,6 @@ function getAppByViews(){
 
 module.exports = {
     getAllapps,
-    getAppById
+    getAppById,
+    getAppByRate
 }
