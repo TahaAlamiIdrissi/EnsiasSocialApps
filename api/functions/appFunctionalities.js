@@ -40,7 +40,14 @@ function getAppById(id){
 //applications/higlyRated
 function getAppByRate(){
     return new Promise((resolve,reject) => {
-        //    SELECT * FROM apps WHERE rate >= (SELECT MAX(rate) FROM apps) ORDER BY
+        const query_str = `SELECT * FROM apps ORDER BY rate DESC`;
+        
+        mysqlConnect.query(query_str,(err,rows,fields) => {
+            if(err)
+                return reject(err);
+            
+            resolve(rows);    
+        })
     });
 }
 //  applications/mostViewed ...
