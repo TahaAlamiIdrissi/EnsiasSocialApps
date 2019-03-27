@@ -41,19 +41,13 @@ function getAppById(id){
 function getAppByRate(){
     return new Promise((resolve,reject) => {
         const query_str = `SELECT * FROM apps ORDER BY rate DESC`;
-        
+
         mysqlConnect.query(query_str,(err,rows,fields) => {
             if(err)
-                return reject(err);
-            
-            resolve(rows);    
-        })
-    });
-}
-//  applications/mostViewed ...
-function getAppByViews(){
-    return new Promise((resolve,reject) => {
-        //    SELECT * FROM apps WHERE view ...
+               return reject(err);
+
+            resolve(rows);
+        });
     });
 }
 

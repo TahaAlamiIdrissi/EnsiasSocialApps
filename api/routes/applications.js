@@ -58,8 +58,32 @@ router.get('/',(req,res,next) => {
  });
 
  /* 
- ** GET APPlICATIONS OF A SPECIFIC TUTOR 
+ ** GET APPlICATIONS BY RATING 
  */
+router.get('/rate/desc',(req,res,next) => {
+    appFunc.getAppByRate()
+           .then(docs => {
+               const response = {
+                   count: docs.length,
+                   applications: docs.map(doc => {
+                       return {
+                           doc,
+                           request:{
+                               type: 'GET',
+                               url : `http://localhost:3000/applications/${doc.id}`
+                           }
+                       }
+                   })
+               }
+               res.status(200)
+                  .json(response)
+           })
+           .catch(err => {
+               console.log(err);
+               res.status(500)
+                  .json(err);
+           });
+});
 
 
  /* 
