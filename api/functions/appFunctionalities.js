@@ -37,7 +37,7 @@ function getAppById(id){
      -> one is called rate 
      -> another one called viewed
 */
-//applications/higlyRated
+//applications/rate/desc
 function getAppByRate(){
     return new Promise((resolve,reject) => {
         const query_str = `SELECT * FROM apps ORDER BY rate DESC`;
@@ -51,8 +51,24 @@ function getAppByRate(){
     });
 }
 
+//applications/views/desc
+
+function getAppByViews(){
+    return new Promise((resolve,reject) => {
+        const query_str = `SELECT * FROM apps ORDER BY views DESC`;
+
+        mysqlConnect.query(query_str,(err,rows,fiekds) => {
+            if(err)
+                return reject(err);
+
+            resolve(rows);
+        });
+    });
+}
+
 module.exports = {
     getAllapps,
     getAppById,
-    getAppByRate
+    getAppByRate,
+    getAppByViews
 }

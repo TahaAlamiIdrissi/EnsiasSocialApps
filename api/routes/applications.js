@@ -58,7 +58,7 @@ router.get('/',(req,res,next) => {
  });
 
  /* 
- ** GET APPlICATIONS BY RATING 
+ ** GET APPlICATIONS BY RATING
  */
 router.get('/rate/desc',(req,res,next) => {
     appFunc.getAppByRate()
@@ -68,7 +68,7 @@ router.get('/rate/desc',(req,res,next) => {
                    applications: docs.map(doc => {
                        return {
                            doc,
-                           request:{
+                           request: {
                                type: 'GET',
                                url : `http://localhost:3000/applications/${doc.id}`
                            }
@@ -76,7 +76,7 @@ router.get('/rate/desc',(req,res,next) => {
                    })
                }
                res.status(200)
-                  .json(response)
+                  .json(response);
            })
            .catch(err => {
                console.log(err);
@@ -87,8 +87,32 @@ router.get('/rate/desc',(req,res,next) => {
 
 
  /* 
- ** GET APPLICATIONS OF A SPECIFIC PARENT 
+ ** GET APPLICATIONS BY VIEWS
  */
+router.get('/views/desc',(req,res,next) => {
+    appFunc.getAppByViews()
+           .then(docs => {
+               const response = {
+                   count: docs.length,
+                   applications: docs.map(doc => {
+                       return {
+                           doc,
+                           request: {
+                            type: 'GET',
+                            url : `http://localhost:3000/applications/${doc.id}`
+                            }
+                        }
+                   })
+               }
+               res.status(200)
+                  .json(response);
+           })
+           .catch(err => {
+               console.log(err);
+               res.status(500)
+                  .json(err);
+           });
+})
 
  
 module.exports = router;
