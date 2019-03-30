@@ -64,15 +64,10 @@ function getParentChilds(id){
 
 function getTutorChilds(id){
     return new Promise((resolve,reject) => {
-        const query_str = `SELECT * 
-                           FROM children 
-                           WHERE id IN ( SELECT id 
-                                         FROM enrollments 
-                                         WHERE user_id 
-                                         in (SELECT id 
-                                             FROM users 
-                                             WHERE type='tuteur' 
-                                             AND id = ? ) )`;
+        const query_str = `SELECT * FROM children 
+                           WHERE id IN(SELECT id FROM enrollments
+                                       WHERE user_id IN (SELECT id FROM users
+                                                         WHERE type like 'tuteur' and id = ?))`;
         const query_param = [id];
 
         mysqlConnect.query(query_str,query_param,(err,rows,fields) => {
