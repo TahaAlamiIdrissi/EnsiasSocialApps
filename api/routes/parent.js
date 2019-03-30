@@ -28,6 +28,30 @@ router.get('/',(req,res,next) => {
 });
 
 
+router.get('/:parentId',(req,res,next) => {
+    const id = req.params.parentId;
 
+    parentFunc.getParentById(id)
+              .then(docs => {
+                  const response = {
+                      parents : docs.map(doc => {
+                          return {
+                            parent:doc,
+                            request: {
+                                type: 'GET',
+                                url: `http://localhost:3000/parents`
+                            }
+                          }
+                      })
+                  }
+                  res.status(200)
+                     .json(response);
+              })
+              .catch(err => {
+                  console.log(err);
+                  res.status(500)
+                     .json(err);
+              });
+})
 
 module.exports = router;

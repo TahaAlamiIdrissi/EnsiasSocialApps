@@ -16,7 +16,7 @@ function getAllParents(){
 }
 
 function getParentById(id){
-    return new Promise((reslove,reject) => {
+    return new Promise((resolve,reject) => {
         const query_str = `SELECT * 
                            FROM users
                            WHERE type like 'parent' AND id = ?`;
