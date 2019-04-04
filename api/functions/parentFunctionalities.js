@@ -1,6 +1,6 @@
 const mysqlConnect = require('../../db');
 
-
+// Get All the parent 
 function getAllParents(){
     return new Promise((resolve,reject) => {
         const query_str = `SELECT * 
@@ -14,7 +14,7 @@ function getAllParents(){
         });
     });
 }
-
+// Get a parent by hes id 
 function getParentById(id){
     return new Promise((resolve,reject) => {
         const query_str = `SELECT * 
