@@ -6,6 +6,7 @@ const app = express();
 const childrenRoutes = require('./api/routes/childrens');
 const applicationRoutes = require('./api/routes/applications');
 const parentRoutes = require('./api/routes/parent');
+const tutorRoutes = require('./api/routes/tutor');
 
 app.use(bodyparser.json());
 
@@ -23,6 +24,7 @@ app.use((req,res,next) => {
 app.use('/childrens',childrenRoutes);
 app.use('/applications',applicationRoutes);
 app.use('/parents',parentRoutes);
+app.use('/tutors',tutorRoutes);
 
 app.use((req,res,next) =>{
     const error = {
