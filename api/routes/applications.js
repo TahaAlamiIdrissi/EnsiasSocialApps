@@ -22,7 +22,7 @@ router.get('/',(req,res,next) => {
                     })
                 }
                 res.status(200)
-                   .json(response);
+                   .json(Array.of(response));
            })
            .catch(err => {
                console.log(err);
@@ -48,7 +48,7 @@ router.get('/',(req,res,next) => {
                     }
                 }
                 res.status(200)
-                   .json(response);
+                   .json(Array.of(response));
             })
             .catch(err => {
                 console.log(err);
@@ -76,7 +76,7 @@ router.get('/rate/desc',(req,res,next) => {
                    })
                }
                res.status(200)
-                  .json(response);
+                  .json(Array.of(response));
            })
            .catch(err => {
                console.log(err);
@@ -105,7 +105,7 @@ router.get('/views/desc',(req,res,next) => {
                    })
                }
                res.status(200)
-                  .json(response);
+                  .json(Array.of(response));
            })
            .catch(err => {
                console.log(err);

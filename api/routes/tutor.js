@@ -20,7 +20,7 @@ router.get('/',(req,res,next) => {
                      })
                  }
                  res.status(200)
-                    .json(response);
+                    .json(Array.of(response));
              })
              .catch(err => {
                  console.log(err);
@@ -30,6 +30,13 @@ router.get('/',(req,res,next) => {
 });
 
 
+// GET TUTOR BY ID ROUTE
 
+router.get('/:tutorId',(req,res,next) => {
+    const id = req.params.tutorId;
+    tutorFunc.getTutorById(id)
+             .then()
+             .catch();
+});
 
 module.exports = router;

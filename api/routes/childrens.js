@@ -24,7 +24,7 @@ router.get('/',(req,res,next) => {
                     })
                 }
                 res.status(200)
-                   .json(response);
+                   .json(Array.of(response));
             })
             .catch(err => {
                 console.error(err);
@@ -47,7 +47,7 @@ router.get('/:childId',(req,res,next) => {
                     }
                 }
                 res.status(200)
-                   .json(response);
+                   .json(Array.of(response));
             })
             .catch(err => {
                 console.error(err);
@@ -72,7 +72,7 @@ router.get('/parent/:parentId',(req,res,next) => {
                     })
                 }
                 res.status(200)
-                   .json(response);
+                   .json(Array.of(response));
             })
             .catch(err => {
                 console.error(err);
@@ -98,7 +98,7 @@ router.get('/tutor/:tutorId',(req,res,next) => {
                      })
                  }
                  res.status(200)
-                    .json(response);
+                    .json(Array.of(response));
              })
              .catch(err => {
                  console.log(err);

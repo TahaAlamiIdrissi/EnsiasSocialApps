@@ -18,7 +18,7 @@ router.get('/',(req,res,next) => {
                       })
                   }
                   res.status(200)
-                     .json(response);
+                     .json(Array.of(response));
               })
               .catch(err => {
                   console.log(err);
@@ -45,7 +45,7 @@ router.get('/:parentId',(req,res,next) => {
                       })
                   }
                   res.status(200)
-                     .json(response);
+                     .json(Array.of(response));
               })
               .catch(err => {
                   console.log(err);
