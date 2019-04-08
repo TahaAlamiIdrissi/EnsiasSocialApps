@@ -30,7 +30,21 @@ function getParentById(id){
     });
 }
 
+function createParent(parent){
+    return new Promise((resolve,reject) => {
+        const query_str = `INSERT INTO users SET ?`;
+        mysqlConnect.query(query_str,parent,(err,rows,fields) => {
+            if(err)
+                return reject(err);
+            
+            resolve(rows);
+        });
+    });
+}
+
+
 module.exports = {
     getAllParents,
-    getParentById
+    getParentById,
+    createParent
 }

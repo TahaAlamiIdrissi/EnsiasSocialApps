@@ -54,4 +54,23 @@ router.get('/:parentId',(req,res,next) => {
               });
 })
 
+router.post('/',(req,res,next) => {
+    parentFunc.createParent(req.body)
+              .then(
+                  res.status(200)
+                    .json({
+                        message: 'Inserted Successfully',
+                        request: {
+                            type: 'POST',
+                            url: `http://localhost:3000/parents/${req.body.id}`
+                        }
+                    })
+              )
+              .catch(err => {
+                  console.log(err);
+                  res.status(500)
+                     .json(err);
+              });
+})
+
 module.exports = router;
