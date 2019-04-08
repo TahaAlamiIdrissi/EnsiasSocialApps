@@ -78,9 +78,22 @@ function getTutorChilds(id){
         });
     })
 }
+
+function createChild(child){
+    return new Promise((resolve,reject) => {
+        const query_str = `INSERT INTO children SET ?`
+        mysqlConnect.query(query_str,child,(err,rows,fields) => {
+           if(err)
+                return reject(err);
+            
+            resolve(rows); 
+        });
+    });
+}
 module.exports = {
     getAllChilds ,
     getChildById,
     getParentChilds,
-    getTutorChilds
+    getTutorChilds,
+    createChild
 };

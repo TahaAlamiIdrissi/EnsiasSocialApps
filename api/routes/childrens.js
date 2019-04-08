@@ -107,4 +107,26 @@ router.get('/tutor/:tutorId',(req,res,next) => {
              });
 });
 
+/* POSTING A CHILD */
+
+router.post('/',(req,res,next) => {
+    childfunc.createChild(req.body)
+             .then(
+                 res.status(200)
+                    .json({
+                        message: 'Child Inserted Successfully ! ',
+                        request: {
+                            type: 'POST',
+                            url: `http://localhost:3000/childrens/${req.body.id}`
+                        }
+                    })
+             )
+             .catch(err => {
+                 console.log(err);
+                 res.status(500)
+                    .json(err);
+             });
+});
+
+
 module.exports = router;
