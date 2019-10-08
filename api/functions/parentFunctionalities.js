@@ -29,7 +29,7 @@ function getParentById(id){
         });
     });
 }
-
+    
 function createParent(parent){
     return new Promise((resolve,reject) => {
         const query_str = `INSERT INTO users SET ?`;
